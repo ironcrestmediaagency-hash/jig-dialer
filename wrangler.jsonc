@@ -9,6 +9,11 @@
     "run_worker_first": ["/api/*"]
   },
   "d1_databases": [
-    { "binding": "DB", "database_name": "jig-dialer", "database_id": "5121d769-cbf0-49a5-8b3e-5b0d87e1abc2" }
-  ]
+    { "binding": "DB", "database_name": "jig-dialer", "database_id": "YOUR-EXISTING-ID-STAYS-HERE" }
+  ],
+  "vars": {
+    "SW_FROM": "+12816195836",
+    "SW_PROJECT_ID": "cb9a913b-4b0a-4dac-9f0c-c8125d7b3f3e",
+    "SW_SPACE": "jackson-investments-group.signalwire.com"
+  }
 }
