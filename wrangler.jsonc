@@ -9,7 +9,7 @@
     "run_worker_first": ["/api/*"]
   },
   "d1_databases": [
-    { "binding": "DB", "database_name": "jig-dialer", "database_id": "YOUR-EXISTING-ID-STAYS-HERE" }
+    { "binding": "DB", "database_name": "jig-dialer", "database_id": "5121d769-cbf0-49a5-8b3e-5b0d87e1abc2" }
   ],
   "vars": {
     "SW_FROM": "+12816195836",
