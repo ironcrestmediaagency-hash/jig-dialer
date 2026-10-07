@@ -5,93 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JIG Dialer</title>
 <style>
-:root{--bg:#000;--panel:#0b0b0b;--panel2:#141414;--line:#2a2a2a;--text:#fff;--mut:#9a9a9a;--dim:#6b6b6b;--ok:#37d67a;--bad:#ff5a5a;--warn:#ffc94d}
+:root{--bg:#000;--panel:#0b0b0b;--line:#262626;--text:#fff;--mut:#9a9a9a;--dim:#666;--ok:#37d67a;--bad:#ff4d4d;--warn:#ffc94d}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 button,input,select,textarea{font:inherit;color:inherit}
-a{color:inherit}
 .hide{display:none!important}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:34px;width:auto;display:block}
+.wm{font-weight:800;letter-spacing:.14em;font-size:13px;text-transform:uppercase}
+label.f{display:block;font-size:11px;color:var(--mut);margin:12px 0 6px;letter-spacing:.08em;text-transform:uppercase}
+.in{width:100%;background:#000;border:1px solid var(--line);border-radius:9px;padding:10px 12px;outline:none}
+.in:focus{border-color:#fff}
+textarea.in{min-height:84px;resize:vertical}
+.btn{background:#fff;color:#000;border:1px solid #fff;border-radius:9px;padding:10px 16px;font-weight:700;cursor:pointer}
+.btn:hover{background:#e6e6e6}
+.btn.ghost{background:transparent;color:#fff;border-color:var(--line);font-weight:600}
+.btn.ghost:hover{border-color:#fff}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.btn.danger{background:transparent;color:var(--bad);border-color:#3a1515}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.err{color:var(--bad);font-size:13px;margin-top:10px;min-height:18px}
+.mut{color:var(--mut)}.dim{color:var(--dim)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.sp{flex:1}
 /* login */
 #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;width:100%;max-width:380px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:38px;width:auto;display:block}
-.brand .wm{font-weight:800;letter-spacing:.14em;font-size:13px;text-transform:uppercase;line-height:1.2}
-label.f{display:block;font-size:12px;color:var(--mut);margin:14px 0 6px;letter-spacing:.04em;text-transform:uppercase}
-.in{width:100%;background:#000;border:1px solid var(--line);border-radius:9px;padding:11px 12px;outline:none}
-.in:focus{border-color:#fff}
-.btn{background:#fff;color:#000;border:1px solid #fff;border-radius:9px;padding:10px 16px;font-weight:700;cursor:pointer}
-.btn:hover{background:#e8e8e8}
-.btn.ghost{background:transparent;color:#fff;border-color:var(--line);font-weight:600}
-.btn.ghost:hover{border-color:#fff;background:#111}
-.btn.red{background:var(--bad);border-color:var(--bad);color:#000}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.btn.sm{padding:6px 11px;font-size:13px;border-radius:8px}
-.err{color:var(--bad);font-size:13px;margin-top:10px;min-height:18px}
-/* app */
+/* app shell */
 header{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#000;z-index:5;flex-wrap:wrap}
-nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
-nav button{background:none;border:0;color:var(--mut);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+nav{display:flex;gap:4px;flex:1}
+nav button{background:none;border:0;color:var(--mut);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600}
 nav button.on{color:#000;background:#fff}
 nav button:hover:not(.on){color:#fff;background:#141414}
-.who{color:var(--mut);font-size:13px;display:flex;align-items:center;gap:10px}
+.who{color:var(--mut);font-size:13px;display:flex;align-items:center;gap:8px}
 main{padding:20px;max-width:1500px;margin:0 auto}
 .banner{border:1px solid var(--warn);color:var(--warn);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px}
-.grid{display:grid;grid-template-columns:300px minmax(0,1fr) 320px;gap:16px;align-items:start}
-@media(max-width:1100px){.grid{grid-template-columns:1fr}}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
-.panel h3{margin:0 0 12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:700}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.sp{flex:1}
-.mut{color:var(--mut)}.dim{color:var(--dim)}
-.addr{font-size:26px;font-weight:800;letter-spacing:-.01em;margin:0;line-height:1.15}
-.csz{color:var(--mut);margin-top:4px}
-.facts{display:flex;gap:10px;margin:14px 0;flex-wrap:wrap}
-.fact{border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-width:92px}
-.fact b{display:block;font-size:17px}
-.fact span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
-.phones{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}
-.ph{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#050505}
-.ph .n{font-size:18px;font-weight:700;letter-spacing:.02em}
-.ph .t{font-size:12px;color:var(--mut);flex:1}
-.callbtn{background:#fff;color:#000;border:0;border-radius:999px;padding:9px 18px;font-weight:800;cursor:pointer}
-.callbtn:hover{background:var(--ok)}
-.callbtn:disabled{opacity:.35;cursor:not-allowed;background:#fff}
-.livebar{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px;background:#050505}
-.livebar.live{border-color:var(--ok)}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--dim)}
-.live .dot{background:var(--ok);box-shadow:0 0 0 4px rgba(55,214,122,.18)}
-.timer{font-variant-numeric:tabular-nums;font-size:22px;font-weight:700}
-.outs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:8px 0 12px}
-.out{background:#000;border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;font-weight:600;text-align:center}
-.out:hover{border-color:#fff}
-.out.on{background:#fff;color:#000;border-color:#fff}
-textarea.in{min-height:96px;resize:vertical}
-.chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--mut)}
-.chip.s-Interested,.chip.s-Offer\ Made,.chip.s-Under\ Contract{color:#000;background:#fff;border-color:#fff}
-.chip.s-DNC,.chip.s-Wrong\ Number,.chip.s-Not\ Interested{color:var(--dim)}
-.chip.s-Callback{color:var(--warn);border-color:var(--warn)}
-.chip.s-Calling{color:var(--ok);border-color:var(--ok)}
-table{width:100%;border-collapse:collapse}
-th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
-td{padding:11px 10px;border-bottom:1px solid #161616;vertical-align:middle}
-tr.click{cursor:pointer}
-tr.click:hover td{background:#0e0e0e}
-.hist{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow:auto}
-.hist div{border-left:2px solid var(--line);padding-left:10px;font-size:13px}
-.notes{white-space:pre-wrap;font-size:13px;color:#ddd;max-height:150px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px;background:#050505;margin-top:8px}
-.kan{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:12px;overflow:auto;padding-bottom:10px}
-.col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;min-height:200px}
-.col h4{margin:0 0 10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
-.mini{border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-bottom:8px;cursor:pointer;background:#050505;font-size:13px}
-.mini:hover{border-color:#fff}
-.big{font-size:34px;font-weight:800}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
-.stat{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel)}
-.stat span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
-.empty{color:var(--dim);padding:30px;text-align:center}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 18px;border-radius:10px;font-weight:700;z-index:50}
-progress{width:100%;height:8px;accent-color:#fff}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.panel h3{margin:0 0 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700}
+/* dialer */
+.dgrid{display:grid;grid-template-columns:400px minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:900px){.dgrid{grid-template-columns:1fr}}
+.status{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);min-height:22px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--dim);flex:none}
+.status.live{color:#fff}.status.live .dot{background:var(--ok);box-shadow:0 0 0 4px rgba(55,214,122,.18)}
+.timer{margin-left:auto;font-variant-numeric:tabular-nums;font-size:18px;font-weight:700;color:#fff}
+.numwrap{position:relative;margin:16px 0 14px}
+#num{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);font-size:28px;font-weight:700;text-align:center;letter-spacing:.02em;padding:6px 38px 12px;outline:none;font-variant-numeric:tabular-nums}
+#num::placeholder{color:#333}
+#bksp{position:absolute;right:2px;top:12px;background:none;border:0;color:var(--mut);font-size:22px;cursor:pointer;padding:6px}
+#bksp:hover{color:#fff}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.key{background:#111;border:1px solid var(--line);border-radius:14px;height:64px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;user-select:none}
+.key:hover{border-color:#fff}.key:active{background:#1d1d1d}
+.key b{font-size:24px;font-weight:600;line-height:1}
+.key small{font-size:9px;letter-spacing:.2em;color:var(--dim);margin-top:3px;height:11px}
+.callrow{display:flex;gap:10px;margin-top:14px}
+#callbtn{flex:1;height:58px;border-radius:999px;border:0;background:var(--ok);color:#000;font-weight:800;font-size:17px;cursor:pointer}
+#callbtn.end{background:var(--bad)}
+#callbtn:disabled{opacity:.4;cursor:not-allowed}
+#mutebtn{width:58px;height:58px;border-radius:50%;border:1px solid var(--line);background:#000;cursor:pointer;font-size:12px;font-weight:700}
+#mutebtn.on{background:#fff;color:#000}
+.from{font-size:12px;color:var(--dim);text-align:center;margin-top:12px}
+.outs{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px}
+.out{background:#000;border:1px solid var(--line);border-radius:10px;padding:9px;cursor:pointer;font-weight:600;text-align:center;font-size:14px}
+.out:hover{border-color:#fff}.out.on{background:#fff;color:#000;border-color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calls{display:flex;flex-direction:column}
+.cl{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid #151515;cursor:pointer;font-size:14px}
+.cl:hover{background:#0f0f0f}
+.cl .n{font-weight:700;min-width:140px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.stat span{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
+.stat b{display:block;font-size:24px}
+.linked{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;margin-bottom:12px;display:flex;gap:10px;align-items:center}
+/* pipeline */
+.kan{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,1fr);gap:12px;overflow-x:auto;padding-bottom:12px;align-items:start}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;min-height:420px}
+.col.over{border-color:#fff}
+.col h4{margin:0 0 10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between}
+.dc{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:grab;background:#050505;font-size:13px}
+.dc:hover{border-color:#fff}
+.dc b{display:block;font-size:14px;margin-bottom:2px}
+.dc .m{color:var(--mut)}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;z-index:40;overflow:auto}
+.modal .card{max-width:520px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 18px;border-radius:10px;font-weight:700;z-index:60;max-width:90vw}
 </style>
 </head>
 <body>
@@ -112,119 +110,107 @@ progress{width:100%;height:8px;accent-color:#fff}
 <div id="app" class="hide">
   <header>
     <div class="brand"><img src="logo.png" alt="" onerror="this.remove()"><div class="wm">JIG Dialer</div></div>
-    <nav id="nav">
-      <button data-v="dial" class="on">Dialer</button>
-      <button data-v="leads">Leads</button>
-      <button data-v="pipe">Pipeline</button>
-      <button data-v="team">Team</button>
-      <button data-v="owner" class="hide" id="nav-owner">Owner</button>
-    </nav>
-    <div class="who"><span id="who"></span><button class="btn ghost sm" id="cell">My cell</button><button class="btn ghost sm" id="out">Sign out</button></div>
+    <nav id="nav"><button data-v="dial" class="on">Dialer</button><button data-v="pipe">Pipeline</button></nav>
+    <div class="who"><span id="who"></span><button class="btn ghost sm" id="setbtn">Settings</button><button class="btn ghost sm" id="out">Sign out</button></div>
   </header>
   <main>
     <div id="banner" class="banner hide"></div>
 
     <!-- DIALER -->
     <section id="v-dial">
-      <div class="grid">
+      <div class="dgrid">
         <div class="panel">
-          <h3>Queue</h3>
-          <label class="f" style="margin-top:0">Market</label>
-          <select id="d-market" class="in"><option>All</option><option>Cleveland</option><option>Houston</option><option>Phoenix</option><option>Dallas–Fort Worth</option></select>
-          <button class="btn" id="d-next" style="width:100%;margin-top:12px">Next lead →</button>
-          <label class="row" style="margin-top:14px;font-size:13px;color:var(--mut);cursor:pointer"><input type="checkbox" id="d-auto" checked> Auto-load next after saving</label>
-          <div class="row" style="margin-top:14px"><div class="stat" style="flex:1;padding:10px"><span>Your calls today</span><div class="big" id="my-calls">0</div></div></div>
-          <div id="q-left" class="mut" style="font-size:13px;margin-top:12px"></div>
+          <div class="status" id="status"><span class="dot"></span><span id="status-t">Ready</span><span class="timer" id="timer">0:00</span></div>
+          <div class="numwrap">
+            <input id="num" inputmode="tel" autocomplete="off" placeholder="Enter number">
+            <button id="bksp" title="Delete" aria-label="Delete digit">⌫</button>
+          </div>
+          <div class="keys" id="keys"></div>
+          <div class="callrow">
+            <button id="mutebtn" class="hide" title="Mute">Mute</button>
+            <button id="callbtn">Call</button>
+          </div>
+          <div class="from" id="from"></div>
         </div>
 
-        <div class="panel" id="d-card">
-          <div class="empty">Hit <b>Next lead</b> to start dialing.</div>
-        </div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div class="panel">
+            <div class="row" style="margin-bottom:12px"><h3 style="margin:0">Log this call</h3><div class="sp"></div><span class="mut" style="font-size:13px" id="lastinfo"></span></div>
+            <div id="linked" class="linked hide"></div>
+            <div class="outs" id="outs"></div>
+            <label class="f">Notes</label>
+            <textarea id="note" class="in" placeholder="Roof, owed, timeline, motivation…"></textarea>
+            <label class="row mut" style="margin-top:12px;font-size:14px;cursor:pointer" id="addwrap"><input type="checkbox" id="addpipe"> Add to pipeline</label>
+            <div id="pipefields" class="hide">
+              <div class="two"><div><label class="f">Property address</label><input id="p-addr" class="in" placeholder="123 Main St, Cleveland OH"></div><div><label class="f">Seller name</label><input id="p-seller" class="in"></div></div>
+              <div class="two"><div><label class="f">Stage</label><select id="p-stage" class="in"></select></div><div><label class="f">Asking price</label><input id="p-ask" class="in" inputmode="numeric" placeholder="$"></div></div>
+            </div>
+            <div class="row" style="margin-top:14px"><button class="btn" id="savecall">Save</button><button class="btn ghost" id="clearlog">Clear</button></div>
+          </div>
 
-        <div class="panel">
-          <h3>History</h3>
-          <div id="d-hist" class="hist"><div class="dim">No lead loaded.</div></div>
-          <h3 style="margin-top:18px">Notes</h3>
-          <div id="d-notes" class="notes dim">—</div>
+          <div class="panel">
+            <div class="row" style="margin-bottom:10px"><h3 style="margin:0">Recent calls</h3><div class="sp"></div>
+              <div class="stat"><span>Today</span><b id="today">0</b></div><div class="stat"><span>Talk time</span><b id="talk">0:00</b></div></div>
+            <div class="calls" id="calls"><div class="dim">No calls yet.</div></div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- LEADS -->
-    <section id="v-leads" class="hide">
-      <div class="panel">
-        <div class="row" style="margin-bottom:14px">
-          <input id="f-q" class="in" style="max-width:260px" placeholder="Search address or phone">
-          <select id="f-market" class="in" style="max-width:170px"><option>All</option><option>Cleveland</option><option>Houston</option><option>Phoenix</option><option>Dallas–Fort Worth</option></select>
-          <select id="f-status" class="in" style="max-width:170px"></select>
-          <label class="row mut" style="font-size:13px;cursor:pointer"><input type="checkbox" id="f-mine"> Mine only</label>
-          <div class="sp"></div><span class="mut" id="f-total"></span>
-        </div>
-        <table><thead><tr><th>Address</th><th>Market</th><th>Sqft</th><th>Bd / Ba</th><th>Status</th><th>Owner</th><th>Calls</th></tr></thead><tbody id="f-body"></tbody></table>
-        <div class="row" style="margin-top:14px"><button class="btn ghost sm" id="f-more">Load more</button></div>
       </div>
     </section>
 
     <!-- PIPELINE -->
-    <section id="v-pipe" class="hide"><div class="kan" id="kan"></div></section>
-
-    <!-- TEAM -->
-    <section id="v-team" class="hide">
-      <div class="row" style="margin-bottom:14px"><select id="t-days" class="in" style="max-width:180px"><option value="1">Today (24h)</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select></div>
-      <div class="stats" id="t-stats"></div>
-      <div class="panel"><h3>By rep</h3><table><thead><tr><th>Rep</th><th>Calls</th><th>Talk time</th><th>No answer</th><th>Interested</th><th>Offers</th><th>Contracts</th></tr></thead><tbody id="t-body"></tbody></table></div>
-    </section>
-
-    <!-- OWNER -->
-    <section id="v-owner" class="hide">
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-        <div class="panel">
-          <h3>Import leads (CSV)</h3>
-          <p class="mut" style="font-size:13px;margin-top:0">Use the formatted Cleveland / Houston CSVs. Columns: Address, City, State, Zip, Square Feet, Beds / Baths, Phone Numbers. Duplicate addresses are skipped.</p>
-          <label class="f">Market</label>
-          <select id="i-market" class="in"><option>Cleveland</option><option>Houston</option><option>Phoenix</option><option>Dallas–Fort Worth</option></select>
-          <label class="f">CSV file</label>
-          <input id="i-file" type="file" accept=".csv,text/csv" class="in">
-          <div id="i-info" class="mut" style="font-size:13px;margin:10px 0"></div>
-          <progress id="i-prog" class="hide" value="0" max="1"></progress>
-          <button class="btn" id="i-go" disabled>Import</button>
-        </div>
-        <div class="panel">
-          <h3>Do-not-call scrub</h3>
-          <p class="mut" style="font-size:13px;margin-top:0">Paste numbers from your DNC scrub (one per line or comma-separated). Any lead with a matching number is marked DNC and skipped by the dialer.</p>
-          <textarea id="n-nums" class="in" placeholder="2165551234&#10;(440) 555-9876"></textarea>
-          <button class="btn" id="n-go" style="margin-top:10px">Mark as DNC</button>
-          <div id="n-info" class="mut" style="font-size:13px;margin-top:10px"></div>
-        </div>
-        <div class="panel">
-          <h3>Add one lead</h3>
-          <label class="f" style="margin-top:0">Address</label><input id="a-addr" class="in" placeholder="123 MAIN ST">
-          <label class="f">City, State, Zip</label><input id="a-csz" class="in" placeholder="CLEVELAND, OH 44111">
-          <div class="row"><div class="sp"><label class="f">Sqft</label><input id="a-sqft" class="in"></div><div class="sp"><label class="f">Beds / Baths</label><input id="a-bb" class="in" placeholder="3 bd / 1 ba"></div></div>
-          <label class="f">Phones (separate with ;)</label><input id="a-ph" class="in" placeholder="(216) 555-1234 (Mobile); (440) 555-9999">
-          <label class="f">Market</label><select id="a-market" class="in"><option>Cleveland</option><option>Houston</option><option>Phoenix</option><option>Dallas–Fort Worth</option></select>
-          <button class="btn" id="a-go" style="margin-top:12px">Add lead</button>
-          <div id="a-info" class="mut" style="font-size:13px;margin-top:10px"></div>
-        </div>
+    <section id="v-pipe" class="hide">
+      <div class="row" style="margin-bottom:14px">
+        <input id="pq" class="in" style="max-width:320px" placeholder="Search address, seller, phone">
+        <div class="sp"></div>
+        <button class="btn" id="adddeal">+ Add deal</button>
       </div>
+      <div class="kan" id="kan"></div>
     </section>
   </main>
 </div>
 
+<!-- deal modal -->
+<div class="modal hide" id="dm"><div class="card">
+  <div class="row"><h3 style="margin:0;font-size:18px" id="dm-title">Deal</h3><div class="sp"></div><button class="btn ghost sm" id="dm-x">Close</button></div>
+  <label class="f">Property address</label><input id="d-addr" class="in">
+  <div class="two"><div><label class="f">Seller name</label><input id="d-seller" class="in"></div><div><label class="f">Phone</label><input id="d-phone" class="in" inputmode="tel"></div></div>
+  <div class="two"><div><label class="f">Stage</label><select id="d-stage" class="in"></select></div><div><label class="f">Callback</label><input id="d-cb" class="in" type="datetime-local"></div></div>
+  <div class="two"><div><label class="f">Asking</label><input id="d-ask" class="in" inputmode="numeric"></div><div><label class="f">Our offer</label><input id="d-offer" class="in" inputmode="numeric"></div></div>
+  <label class="f">Notes</label><textarea id="d-notes" class="in" style="min-height:120px"></textarea>
+  <div class="row" style="margin-top:14px"><button class="btn" id="d-save">Save</button><button class="btn ghost" id="d-call">Call</button><div class="sp"></div><button class="btn danger sm" id="d-del">Delete</button></div>
+  <div class="err" id="d-err"></div>
+</div></div>
+
+<!-- settings modal -->
+<div class="modal hide" id="sm"><div class="card">
+  <div class="row"><h3 style="margin:0;font-size:18px">Settings</h3><div class="sp"></div><button class="btn ghost sm" id="sm-x">Close</button></div>
+  <label class="f">How calls connect</label>
+  <select id="s-mode" class="in"><option value="browser">Computer (headset or mic + speakers)</option><option value="ring">Ring my phone first (backup)</option></select>
+  <p class="mut" style="font-size:13px">Computer is the normal way. Use "Ring my phone" only if computer calling won't work for you: the dialer rings your cell, you press 1, then it calls the number.</p>
+  <div id="s-cellwrap"><label class="f">Your cell (only for "Ring my phone")</label><input id="s-cell" class="in" inputmode="tel" placeholder="(602) 555-1234"></div>
+  <div class="row" style="margin-top:14px"><button class="btn" id="s-save">Save</button></div>
+  <div class="err" id="s-err"></div>
+</div></div>
+
+<audio id="remoteAudio" autoplay playsinline></audio>
+<script src="https://cdn.jsdelivr.net/npm/@signalwire/js@1.5.0/dist/index.min.js"></script>
 <script>
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const TZ = { "Cleveland": "America/New_York", "Houston": "America/Chicago", "Dallas–Fort Worth": "America/Chicago", "Phoenix": "America/Phoenix" };
-const OUTCOMES = ["No Answer","Voicemail","Wrong Number","Not Interested","Callback","Interested","Offer Made","Under Contract","DNC"];
-let S = { key: "", rep: "", owner: false, statuses: [], dialer: false, myPhone: null, lead: null, outcome: null, call: null, poll: null, callStart: 0, timer: null, lastPhone: "", secs: 0, f: { offset: 0 } };
+const S = { key:"", rep:"", stages:[], outcomes:[], sw:false, project:null, from:null, cell:null, mode:"browser",
+  call:null, ring:null, poll:null, t0:0, tick:null, lastPhone:"", lastSecs:0, outcome:null, dealId:null, dealLabel:"", deals:[] };
 
 function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch {} }
-function toast(t) { const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 2200); }
-
+function toast(t) { const d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 3200); }
+function fmtSecs(n) { n = Math.round(n || 0); return Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0"); }
+function digits(s) { return String(s || "").replace(/\D/g, ""); }
+function d10(s) { const d = digits(s); return d.length === 11 && d[0] === "1" ? d.slice(1) : d; }
+function pretty(s) { const d = d10(s); return d.length === 10 ? `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}` : s; }
+function money(n) { return n == null || n === "" ? "" : "$" + Number(n).toLocaleString(); }
 async function api(path, opts = {}) {
   const r = await fetch("/api" + path, { method: opts.method || "GET", headers: { "content-type": "application/json", "x-team-key": S.key, "x-rep": S.rep }, body: opts.body ? JSON.stringify(opts.body) : undefined });
   let j = {}; try { j = await r.json(); } catch {}
-  if (!r.ok) { const e = new Error(j.error || "Request failed"); e.status = r.status; throw e; }
+  if (!r.ok) throw new Error(j.error || "Request failed");
   return j;
 }
 
@@ -233,272 +219,260 @@ async function signIn(name, pw, silent) {
   S.key = pw; S.rep = name.trim();
   try {
     const me = await api("/me");
-    S.owner = me.owner; S.statuses = me.statuses; S.dialer = me.dialer; S.myPhone = me.phone;
+    Object.assign(S, { stages: me.stages, outcomes: me.outcomes, sw: me.sw, project: me.project, from: me.from, cell: me.phone });
+    S.mode = ls("jig_mode") || "browser";
     ls("jig_name", S.rep); ls("jig_pw", pw);
     $("#login").classList.add("hide"); $("#app").classList.remove("hide");
-    $("#who").textContent = S.rep + (S.owner ? " · owner" : "");
-    if (S.owner) $("#nav-owner").classList.remove("hide");
-    $("#f-status").innerHTML = ["All", ...S.statuses].map(s => `<option>${esc(s)}</option>`).join("");
-    updateCellBtn();
-    if (!S.dialer) { const b = $("#banner"); b.classList.remove("hide"); b.textContent = "SignalWire isn't connected yet, so Call opens your device's phone app. Add the SW_ variables in Cloudflare to dial through your company number."; }
-    else if (!S.myPhone) setTimeout(askCell, 300);
-    refreshMine(); restoreLead();
-  } catch (e) { if (!silent) $("#l-err").textContent = e.message; }
+    $("#who").textContent = S.rep;
+    $("#from").textContent = S.from ? "Calling from " + pretty(S.from) : "";
+    $("#p-stage").innerHTML = $("#d-stage").innerHTML = S.stages.map(s => `<option>${esc(s)}</option>`).join("");
+    $("#outs").innerHTML = S.outcomes.map(o => `<div class="out" data-o="${esc(o)}">${esc(o)}</div>`).join("");
+    if (!S.sw) { const b = $("#banner"); b.classList.remove("hide"); b.textContent = "SignalWire isn't connected yet. Add the SW_ variables in Cloudflare, then reload."; }
+    loadCalls();
+  } catch (e) { if (!silent) $("#l-err").textContent = e.message; else ls("jig_pw", null); }
 }
 $("#l-go").onclick = () => { $("#l-err").textContent = ""; const n = $("#l-name").value, p = $("#l-pw").value; if (!n.trim() || !p) return $("#l-err").textContent = "Enter your name and the team password."; signIn(n, p); };
 $("#l-pw").addEventListener("keydown", e => { if (e.key === "Enter") $("#l-go").click(); });
 $("#out").onclick = () => { ls("jig_pw", null); location.reload(); };
 { const n = ls("jig_name"), p = ls("jig_pw"); if (n) $("#l-name").value = n; if (n && p) signIn(n, p, true); }
 
-/* ---------- nav ---------- */
 $("#nav").onclick = e => { const b = e.target.closest("button"); if (b) show(b.dataset.v); };
 function show(v) {
   $$("#nav button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
-  ["dial","leads","pipe","team","owner"].forEach(x => $("#v-" + x).classList.toggle("hide", x !== v));
-  if (v === "leads") loadLeads(true); if (v === "pipe") loadPipe(); if (v === "team") loadTeam();
+  $("#v-dial").classList.toggle("hide", v !== "dial"); $("#v-pipe").classList.toggle("hide", v !== "pipe");
+  if (v === "pipe") loadDeals();
 }
 
-/* ---------- dialer ---------- */
-function localTime(market) {
-  const tz = TZ[market]; if (!tz) return null;
-  const now = new Date();
-  const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: tz, hour: "numeric", hour12: false }).format(now)) % 24;
-  const txt = new Intl.DateTimeFormat("en-US", { timeZone: tz, hour: "numeric", minute: "2-digit" }).format(now);
-  return { h, txt, ok: h >= 8 && h < 21 };
+/* ---------- keypad ---------- */
+const KEYS = [["1",""],["2","ABC"],["3","DEF"],["4","GHI"],["5","JKL"],["6","MNO"],["7","PQRS"],["8","TUV"],["9","WXYZ"],["*",""],["0","+"],["#",""]];
+$("#keys").innerHTML = KEYS.map(([k, s]) => `<div class="key" data-k="${k}"><b>${k}</b><small>${s}</small></div>`).join("");
+function press(k) {
+  if (S.call && S.call.dtmf) { try { S.call.dtmf(k); } catch {} flashKey(k); return; }
+  if (S.call || S.ring) return;
+  const el = $("#num"); el.value = formatNum(el.value + k); flashKey(k);
 }
-function fmtSecs(n) { n = Math.round(n || 0); return Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0"); }
-async function refreshMine() {
-  try { const st = await api("/stats?days=1"); const me = st.reps.find(r => r.rep === S.rep); $("#my-calls").textContent = me ? me.calls : 0;
-    const m = $("#d-market").value; const row = st.markets.find(x => x.market === m); const total = st.markets.reduce((n, x) => n + (x.fresh || 0), 0);
-    $("#q-left").textContent = (m === "All" ? total : (row ? row.fresh : 0)) + " untouched leads left in " + (m === "All" ? "all markets" : m);
-  } catch {}
-}
-$("#d-market").onchange = refreshMine;
+function flashKey(k) { const el = $(`.key[data-k="${CSS.escape(k)}"]`); if (el) { el.style.background = "#222"; setTimeout(() => el.style.background = "", 120); } }
+function formatNum(v) { const d = digits(v); if (/[*#]/.test(v)) return v.replace(/[^\d*#+]/g, ""); const t = d.length === 11 && d[0] === "1" ? d.slice(1) : d; if (t.length <= 3) return t; if (t.length <= 6) return `(${t.slice(0,3)}) ${t.slice(3)}`; if (t.length <= 10) return `(${t.slice(0,3)}) ${t.slice(3,6)}-${t.slice(6)}`; return d; }
+$("#keys").onclick = e => { const k = e.target.closest(".key"); if (k) press(k.dataset.k); };
+$("#bksp").onclick = () => { const el = $("#num"); const d = digits(el.value); el.value = formatNum(d.slice(0, -1)); };
+$("#num").addEventListener("input", e => { const el = e.target; el.value = formatNum(el.value); });
+$("#num").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); $("#callbtn").click(); } });
+document.addEventListener("keydown", e => {
+  if ($("#v-dial").classList.contains("hide") || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (/^[0-9*#]$/.test(e.key)) { e.preventDefault(); press(e.key); }
+  else if (e.key === "Backspace" && !S.call) { e.preventDefault(); $("#bksp").click(); }
+  else if (e.key === "Enter") { e.preventDefault(); $("#callbtn").click(); }
+});
 
-async function nextLead() {
-  if (S.call) return toast("Finish the current call first.");
+/* ---------- call state ---------- */
+function setStatus(text, live) { $("#status-t").textContent = text; $("#status").classList.toggle("live", !!live); }
+function setInCall(on) {
+  const b = $("#callbtn"); b.textContent = on ? "Hang up" : "Call"; b.classList.toggle("end", on); b.disabled = false;
+  $("#mutebtn").classList.toggle("hide", !(on && S.mode === "browser")); $("#mutebtn").classList.remove("on"); $("#mutebtn").textContent = "Mute";
+  $("#num").readOnly = on;
+}
+function startTimer() { S.t0 = Date.now(); clearInterval(S.tick); S.tick = setInterval(() => $("#timer").textContent = fmtSecs((Date.now() - S.t0) / 1000), 500); }
+function stopTimer() { clearInterval(S.tick); S.lastSecs = S.t0 ? Math.round((Date.now() - S.t0) / 1000) : 0; S.t0 = 0; }
+function callEnded(msg) {
+  stopTimer(); S.call = null; S.ring = null; clearInterval(S.poll);
+  setInCall(false); setStatus(msg || "Call ended", false);
+  $("#lastinfo").textContent = `${pretty(S.lastPhone)} · ${fmtSecs(S.lastSecs)}`;
+  document.querySelector("#outs").scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+
+$("#callbtn").onclick = () => (S.call || S.ring) ? hangUp() : startCall();
+$("#mutebtn").onclick = () => {
+  if (!S.call) return; const on = !$("#mutebtn").classList.contains("on");
+  try { on ? S.call.muteAudio() : S.call.unmuteAudio(); } catch {}
+  $("#mutebtn").classList.toggle("on", on); $("#mutebtn").textContent = on ? "Muted" : "Mute";
+};
+
+async function startCall() {
+  const n = d10($("#num").value);
+  if (n.length !== 10) return toast("Enter a 10-digit US number.");
+  if (!S.sw) return toast("SignalWire isn't connected yet.");
+  S.lastPhone = n; S.lastSecs = 0; $("#timer").textContent = "0:00";
+  $("#callbtn").disabled = true;
+  if (S.mode === "ring") return ringCall(n);
   try {
-    const r = await api("/leads/next", { method: "POST", body: { market: $("#d-market").value } });
-    if (!r.lead) { S.lead = null; ls("jig_lead", null); renderLead(); $("#d-card").innerHTML = `<div class="empty">No untouched leads left in this market. Pick another market or check Callbacks in Leads.</div>`; return; }
-    setLead(r.lead);
-  } catch (e) { toast(e.message); }
+    setStatus("Connecting…", true);
+    try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); st.getTracks().forEach(t => t.stop()); }
+    catch { throw new Error("Microphone is blocked. Click the lock icon by the address bar, allow the microphone, then try again."); }
+    const c = await relay();
+    setInCall(true); setStatus("Dialing…", true);
+    const call = await c.newCall({ destinationNumber: "+1" + n, callerNumber: S.from, audio: true, video: false });
+    S.call = call;
+  } catch (e) { S.call = null; setInCall(false); setStatus("Ready"); toast(e.message || String(e)); }
 }
-$("#d-next").onclick = nextLead;
-
-async function setLead(lead) {
-  S.lead = lead; S.outcome = null; ls("jig_lead", lead.id);
-  show("dial"); renderLead(); loadHist(lead.id); refreshMine();
-}
-async function restoreLead() { const id = ls("jig_lead"); if (!id) return; try { const r = await api("/leads/" + id); if (r.lead.owner === S.rep && ["Calling","Callback"].includes(r.lead.status)) setLead(r.lead); } catch {} }
-async function openLead(id) {
-  try { const r = await api("/leads/" + id); const l = r.lead; if (!l.owner) { await api("/leads/" + id, { method: "PATCH", body: { claim: true } }); l.owner = S.rep; } setLead(l); } catch (e) { toast(e.message); }
-}
-async function loadHist(id) {
-  try {
-    const r = await api("/leads/" + id);
-    $("#d-hist").innerHTML = r.calls.length ? r.calls.map(c => `<div><b>${esc(c.outcome)}</b> · ${esc(c.rep)}<br><span class="mut">${new Date(c.ts).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})} · ${fmtSecs(c.seconds)}${c.phone ? " · " + esc(c.phone) : ""}</span>${c.note ? `<br>${esc(c.note)}` : ""}</div>`).join("") : `<div class="dim">No calls yet.</div>`;
-    $("#d-notes").textContent = r.lead.notes || "—";
-  } catch {}
+function hangUp() {
+  if (S.call) { try { S.call.hangup(); } catch {} setTimeout(() => { if (S.call) callEnded("Call ended"); }, 2500); }
+  else if (S.ring) { api("/dial/" + S.ring + "/hangup", { method: "POST" }).catch(e => toast(e.message)); }
 }
 
-function renderLead() {
-  const l = S.lead; const el = $("#d-card");
-  if (!l) { el.innerHTML = `<div class="empty">Hit <b>Next lead</b> to start dialing.</div>`; $("#d-hist").innerHTML = `<div class="dim">No lead loaded.</div>`; $("#d-notes").textContent = "—"; return; }
-  const lt = localTime(l.market);
-  const phones = l.phones.map((p, i) => `<div class="ph"><div class="n">${esc(p.num)}</div><div class="t">${esc(p.type || "")}</div><button class="btn ghost sm cpy" data-i="${i}">Copy</button><button class="callbtn" data-i="${i}" ${S.call ? "disabled" : ""}>Call</button></div>`).join("") || `<div class="dim">No phone numbers on this lead.</div>`;
-  el.innerHTML = `
-    <div class="row"><span class="chip s-${esc(l.status)}">${esc(l.status)}</span><span class="chip">${esc(l.market)}</span>${lt ? `<span class="chip" style="${lt.ok ? "" : "color:var(--warn);border-color:var(--warn)"}">${esc(lt.txt)} there${lt.ok ? "" : " · outside 8am–9pm"}</span>` : ""}<div class="sp"></div>
-      <a class="btn ghost sm" target="_blank" rel="noopener" href="https://www.zillow.com/homes/${encodeURIComponent(l.address + " " + l.csz)}_rb/">Zillow</a>
-      <a class="btn ghost sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/${encodeURIComponent(l.address + " " + l.csz)}">Map</a></div>
-    <h2 class="addr" style="margin-top:14px">${esc(l.address)}</h2><div class="csz">${esc(l.csz)}</div>
-    <div class="facts"><div class="fact"><b>${esc(l.sqft || "—")}</b><span>sqft</span></div><div class="fact"><b>${esc((l.beds_baths || "—").replace(/ bd \/ /, " / ").replace(/ ba$/, ""))}</b><span>beds / baths</span></div><div class="fact"><b>${l.calls || 0}</b><span>calls</span></div>${l.callback ? `<div class="fact"><b>${esc(new Date(l.callback).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</b><span>callback</span></div>` : ""}</div>
-    <div id="livebar" class="livebar"><span class="dot"></span><div><div id="live-s" class="mut">Ready</div></div><div class="sp"></div><span class="timer" id="live-t">0:00</span>
-      <button class="btn red sm" id="hang" disabled>Hang up</button></div>
-    <h3 style="margin:0 0 8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)">Numbers</h3>
-    <div class="phones">${phones}</div>
-    <h3 style="margin:0 0 8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)">Outcome</h3>
-    <div class="outs">${OUTCOMES.map(o => `<div class="out${S.outcome === o ? " on" : ""}" data-o="${esc(o)}">${esc(o)}</div>`).join("")}</div>
-    <div id="cb-wrap" class="${S.outcome === "Callback" ? "" : "hide"}"><label class="f" style="margin-top:0">Call back at</label><input id="cb" type="datetime-local" class="in" style="max-width:260px"></div>
-    <label class="f">Notes from the call</label>
-    <textarea id="note" class="in" placeholder="Roof, owed, timeline, motivation…"></textarea>
-    <div class="row" style="margin-top:12px"><button class="btn" id="save">Save call</button><button class="btn ghost" id="skip">Skip lead</button><span id="save-info" class="mut" style="font-size:13px"></span></div>`;
-  el.querySelectorAll(".callbtn").forEach(b => b.onclick = () => dial(l.phones[+b.dataset.i]));
-  el.querySelectorAll(".cpy").forEach(b => b.onclick = async () => { try { await navigator.clipboard.writeText(l.phones[+b.dataset.i].num); toast("Copied"); } catch { toast("Couldn't copy"); } });
-  el.querySelectorAll(".out").forEach(b => b.onclick = () => { S.outcome = b.dataset.o; el.querySelectorAll(".out").forEach(x => x.classList.toggle("on", x === b)); $("#cb-wrap").classList.toggle("hide", S.outcome !== "Callback"); });
-  $("#save").onclick = saveCall; $("#skip").onclick = skipLead;
-  $("#hang").onclick = hangupCall;
-  if (S.call) setLive(true, "On call");
+/* browser calling via SignalWire JS SDK */
+let RC = null, rcReady = false;
+function relay() {
+  if (RC && rcReady) return Promise.resolve(RC);
+  return api("/sw/token").then(t => new Promise((res, rej) => {
+    if (typeof Relay === "undefined") return rej(new Error("The calling library didn't load. Turn off ad blockers or Brave Shields for this site and reload."));
+    const c = new Relay({ project: t.project, token: t.jwt });
+    c.remoteElement = "remoteAudio";
+    try { c.enableMicrophone(); c.disableWebcam(); } catch {}
+    let done = false;
+    const finish = (err) => { if (done) return; done = true; err ? rej(err) : (RC = c, rcReady = true, res(c)); };
+    c.on("signalwire.ready", () => finish());
+    c.on("signalwire.error", e => { rcReady = false; finish(new Error("Couldn't connect to SignalWire" + (e && e.message ? ": " + e.message : "."))); });
+    c.on("signalwire.socket.close", () => { rcReady = false; });
+    c.on("signalwire.notification", n => {
+      if (n.type === "callUpdate") onCallUpdate(n.call);
+      else if (n.type === "refreshToken") api("/sw/token").then(x => c.refreshToken(x.jwt)).catch(() => {});
+      else if (n.type === "userMediaError") toast("Microphone blocked. Allow mic access for this site and try again.");
+    });
+    c.connect();
+    setTimeout(() => finish(new Error("SignalWire took too long to connect. Check your internet, then try again.")), 15000);
+  }));
+}
+function onCallUpdate(call) {
+  if (!S.call || (call.id && S.call.id && call.id !== S.call.id)) { if (!S.call) S.call = call; else return; }
+  const st = String(call.state || "").toLowerCase();
+  if (["new", "requesting", "trying", "recovering"].includes(st)) setStatus("Dialing…", true);
+  else if (["ringing", "early"].includes(st)) setStatus("Ringing…", true);
+  else if (st === "active") { if (!S.t0) startTimer(); setStatus("Connected", true); }
+  else if (["hangup", "destroy", "purge"].includes(st)) { if (S.call) callEnded("Call ended"); }
 }
 
-function setLive(on, text) {
-  const b = $("#livebar"); if (!b) return;
-  b.classList.toggle("live", on); $("#live-s").textContent = text;
-  $("#hang").disabled = !on;
-  $$(".callbtn").forEach(x => x.disabled = on);
-}
-function startTimer() { S.callStart = Date.now(); clearInterval(S.timer); S.timer = setInterval(() => { const t = $("#live-t"); if (t) t.textContent = fmtSecs((Date.now() - S.callStart) / 1000); }, 500); }
-function stopTimer() { clearInterval(S.timer); S.secs = S.callStart ? Math.round((Date.now() - S.callStart) / 1000) : 0; S.callStart = 0; }
-
-function updateCellBtn() { $("#cell").textContent = S.myPhone ? "My cell: " + S.myPhone.replace(/^\+1(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3") : "Add my cell"; }
-async function askCell() {
-  const v = prompt("Your cell number. When you click Call, the dialer rings this phone first, then connects you to the lead.", S.myPhone || "");
-  if (v === null) return;
-  try { const r = await api("/me/phone", { method: "POST", body: { phone: v } }); S.myPhone = r.phone; updateCellBtn(); toast("Cell saved"); } catch (e) { toast(e.message); }
-}
-$("#cell").onclick = askCell;
-
-const STATUS_TEXT = { queued: "Calling your cell…", initiated: "Calling your cell…", ringing: "Your cell is ringing. Answer and press 1.", "in-progress": "On your cell. Press 1 to connect.", completed: "Call ended", busy: "Your cell was busy", "no-answer": "You didn't answer your cell", failed: "Call failed", canceled: "Call canceled" };
-const LEAD_TEXT = { queued: "Dialing lead…", initiated: "Dialing lead…", ringing: "Lead's phone is ringing…", "in-progress": "Connected to lead", completed: "Lead call ended", busy: "Lead line busy", "no-answer": "Lead didn't answer", failed: "Lead call failed", canceled: "Lead call canceled" };
+/* backup: ring my phone first */
+const RS = { queued: "Calling your cell…", initiated: "Calling your cell…", ringing: "Your cell is ringing. Answer, then press 1.", "in-progress": "On your cell. Press 1.", completed: "Call ended", busy: "Your cell was busy", "no-answer": "You didn't answer your cell", failed: "Call failed", canceled: "Canceled" };
+const LS = { queued: "Dialing…", initiated: "Dialing…", ringing: "Ringing…", "in-progress": "Connected", completed: "Call ended", busy: "Line busy", "no-answer": "No answer", failed: "Call failed", canceled: "Canceled" };
 const DONE = ["completed", "busy", "no-answer", "failed", "canceled"];
-
-async function dial(p) {
-  const l = S.lead; if (!l || S.call) return;
-  const lt = localTime(l.market);
-  if (lt && !lt.ok && !confirm(`It's ${lt.txt} where this lead is. Calls outside 8am–9pm local time can break federal calling rules. Call anyway?`)) return;
-  S.lastPhone = p.num; S.secs = 0; $("#live-t").textContent = "0:00";
-  if (!S.dialer) { location.href = "tel:" + p.num.replace(/[^\d+]/g, ""); setLive(false, "Dialing from your phone app. Pick an outcome when done."); return; }
-  if (!S.myPhone) { await askCell(); if (!S.myPhone) return; }
+async function ringCall(n) {
+  if (!S.cell) { $("#callbtn").disabled = false; openSettings(); return toast("Add your cell in Settings for Ring-my-phone mode."); }
   try {
-    setLive(true, "Starting call…");
-    const r = await api("/dial", { method: "POST", body: { lead_id: l.id, to: p.num } });
-    S.call = { sid: r.sid }; setLive(true, STATUS_TEXT.queued);
-    let leadUp = false;
-    clearInterval(S.poll);
+    const r = await api("/dial", { method: "POST", body: { to: n } });
+    S.ring = r.sid; setInCall(true); setStatus(RS.queued, true);
+    let up = false;
     S.poll = setInterval(async () => {
-      if (!S.call) return clearInterval(S.poll);
+      if (!S.ring) return clearInterval(S.poll);
       try {
-        const st = await api("/dial/" + S.call.sid);
-        if (st.lead) {
-          setLive(true, LEAD_TEXT[st.lead.status] || st.lead.status);
-          if (st.lead.status === "in-progress" && !leadUp) { leadUp = true; startTimer(); }
-          if (DONE.includes(st.lead.status) && leadUp) { S.leadSecs = st.lead.duration; }
-        } else setLive(true, STATUS_TEXT[st.rep.status] || st.rep.status);
-        if (DONE.includes(st.rep.status)) {
-          clearInterval(S.poll); stopTimer();
-          if (st.lead && st.lead.duration) S.secs = st.lead.duration;
-          const msg = st.lead ? (LEAD_TEXT[st.lead.status] || "Call ended") : (STATUS_TEXT[st.rep.status] || "Call ended");
-          S.call = null; setLive(false, msg + ". Pick an outcome and save.");
-        }
+        const st = await api("/dial/" + S.ring);
+        if (st.lead) { setStatus(LS[st.lead.status] || st.lead.status, true); if (st.lead.status === "in-progress" && !up) { up = true; startTimer(); } }
+        else setStatus(RS[st.rep.status] || st.rep.status, true);
+        if (DONE.includes(st.rep.status)) { const msg = st.lead ? (LS[st.lead.status] || "Call ended") : (RS[st.rep.status] || "Call ended"); stopTimer(); if (st.lead && st.lead.duration) S.t0 = 0, S.lastSecs = st.lead.duration; S.ring = null; callEnded(msg); }
       } catch {}
     }, 2000);
-  } catch (e) { S.call = null; setLive(false, "Ready"); toast(e.message); }
-}
-async function hangupCall() {
-  if (!S.call) return;
-  try { await api("/dial/" + S.call.sid + "/hangup", { method: "POST" }); } catch (e) { toast(e.message); }
+  } catch (e) { S.ring = null; setInCall(false); setStatus("Ready"); toast(e.message); }
 }
 
-async function saveCall() {
-  if (!S.lead) return;
-  if (S.call) return toast("Hang up first.");
+/* ---------- log call ---------- */
+$("#outs").onclick = e => { const o = e.target.closest(".out"); if (!o) return; S.outcome = o.dataset.o; $$(".out").forEach(x => x.classList.toggle("on", x === o)); };
+$("#addpipe").onchange = e => $("#pipefields").classList.toggle("hide", !e.target.checked);
+function clearLog() {
+  S.outcome = null; S.dealId = null; $$(".out").forEach(x => x.classList.remove("on"));
+  $("#note").value = ""; $("#addpipe").checked = false; $("#pipefields").classList.add("hide");
+  ["#p-addr","#p-seller","#p-ask"].forEach(s => $(s).value = ""); $("#p-stage").value = "Lead";
+  $("#linked").classList.add("hide"); $("#addwrap").classList.remove("hide"); $("#lastinfo").textContent = "";
+}
+$("#clearlog").onclick = clearLog;
+$("#savecall").onclick = async () => {
+  if (S.call || S.ring) return toast("Hang up first.");
+  const phone = S.lastPhone || d10($("#num").value);
+  if (!phone && !S.dealId) return toast("Make a call first.");
   if (!S.outcome) return toast("Pick an outcome.");
-  const cb = $("#cb") && $("#cb").value ? new Date($("#cb").value).toISOString() : null;
-  if (S.outcome === "Callback" && !cb) return toast("Set a callback time.");
-  $("#save").disabled = true;
+  $("#savecall").disabled = true;
   try {
-    await api("/calls", { method: "POST", body: { lead_id: S.lead.id, outcome: S.outcome, seconds: S.secs, phone: S.lastPhone, note: $("#note").value, callback: cb } });
-    toast("Saved");
-    S.secs = 0; S.outcome = null; S.lastPhone = "";
-    refreshMine();
-    if ($("#d-auto").checked) nextLead(); else { const r = await api("/leads/" + S.lead.id); S.lead = r.lead; renderLead(); loadHist(S.lead.id); }
-  } catch (e) { toast(e.message); $("#save").disabled = false; }
-}
-async function skipLead() {
-  if (!S.lead || S.call) return;
-  try { await api("/leads/" + S.lead.id, { method: "PATCH", body: { release: true } }); } catch {}
-  S.lead = null; ls("jig_lead", null); nextLead();
-}
-window.addEventListener("beforeunload", () => {});
-
-/* ---------- leads ---------- */
-function leadRow(l) {
-  return `<tr class="click" data-id="${esc(l.id)}"><td><b>${esc(l.address)}</b><div class="dim" style="font-size:12px">${esc(l.csz)}</div></td><td>${esc(l.market)}</td><td>${esc(l.sqft)}</td><td>${esc(l.beds_baths)}</td><td><span class="chip s-${esc(l.status)}">${esc(l.status)}</span></td><td class="mut">${esc(l.owner || "—")}</td><td>${l.calls || 0}</td></tr>`;
-}
-async function loadLeads(reset) {
-  if (reset) S.f.offset = 0;
-  const qs = new URLSearchParams({ market: $("#f-market").value, status: $("#f-status").value || "All", q: $("#f-q").value, mine: $("#f-mine").checked ? "1" : "0", limit: 100, offset: S.f.offset });
-  try {
-    const r = await api("/leads?" + qs);
-    const html = r.leads.map(leadRow).join("") || `<tr><td colspan="7" class="empty">No leads match.</td></tr>`;
-    if (reset) $("#f-body").innerHTML = html; else $("#f-body").insertAdjacentHTML("beforeend", html);
-    $("#f-total").textContent = r.total + " leads";
-    $("#f-more").classList.toggle("hide", S.f.offset + r.leads.length >= r.total);
-    S.f.offset += r.leads.length;
+    let dealId = S.dealId;
+    if (!dealId && $("#addpipe").checked) {
+      const r = await api("/deals", { method: "POST", body: { phone: pretty(phone), address: $("#p-addr").value, seller: $("#p-seller").value, stage: $("#p-stage").value, asking: $("#p-ask").value, notes: "" } });
+      dealId = r.deal.id;
+    }
+    await api("/calls", { method: "POST", body: { phone: pretty(phone), seconds: S.lastSecs, outcome: S.outcome, note: $("#note").value, deal_id: dealId } });
+    toast(dealId && !S.dealId ? "Saved and added to pipeline" : "Saved");
+    clearLog(); $("#num").value = ""; S.lastPhone = ""; S.lastSecs = 0; $("#timer").textContent = "0:00"; setStatus("Ready");
+    loadCalls();
   } catch (e) { toast(e.message); }
+  $("#savecall").disabled = false;
+};
+async function loadCalls() {
+  try {
+    const r = await api("/calls");
+    $("#today").textContent = r.today.n; $("#talk").textContent = fmtSecs(r.today.s);
+    $("#calls").innerHTML = r.calls.length ? r.calls.map(c => `<div class="cl" data-p="${esc(c.phone)}"><span class="n">${esc(c.phone)}</span><span>${esc(c.outcome)}</span><span class="dim">${fmtSecs(c.seconds)}</span><div class="sp"></div><span class="dim" style="font-size:12px">${new Date(c.ts).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</span></div>`).join("") : `<div class="dim">No calls yet.</div>`;
+  } catch {}
 }
-$("#f-body").onclick = e => { const tr = e.target.closest("tr[data-id]"); if (tr) openLead(tr.dataset.id); };
-$("#f-more").onclick = () => loadLeads(false);
-let ft; ["f-q"].forEach(id => $("#" + id).addEventListener("input", () => { clearTimeout(ft); ft = setTimeout(() => loadLeads(true), 300); }));
-["f-market","f-status","f-mine"].forEach(id => $("#" + id).addEventListener("change", () => loadLeads(true)));
+$("#calls").onclick = e => { const c = e.target.closest(".cl"); if (c && !S.call && !S.ring) { $("#num").value = formatNum(c.dataset.p); $("#num").focus(); } };
 
 /* ---------- pipeline ---------- */
-async function loadPipe() {
-  const stages = ["Callback","Interested","Offer Made","Under Contract","No Answer","Not Interested"];
-  try {
-    const results = await Promise.all(stages.map(s => api("/leads?" + new URLSearchParams({ status: s, limit: 30 }))));
-    $("#kan").innerHTML = stages.map((s, i) => `<div class="col"><h4><span>${esc(s)}</span><span class="mut">${results[i].total}</span></h4>${results[i].leads.map(l => `<div class="mini" data-id="${esc(l.id)}"><b>${esc(l.address)}</b><div class="dim">${esc(l.market)} · ${esc(l.owner || "—")}${l.callback && s === "Callback" ? " · " + esc(new Date(l.callback).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})) : ""}</div></div>`).join("") || `<div class="dim" style="font-size:13px">Empty</div>`}</div>`).join("");
-  } catch (e) { toast(e.message); }
+async function loadDeals() {
+  try { const r = await api("/deals?q=" + encodeURIComponent($("#pq").value)); S.deals = r.deals; renderKan(); } catch (e) { toast(e.message); }
 }
-$("#kan").onclick = e => { const m = e.target.closest(".mini"); if (m) openLead(m.dataset.id); };
+let pqT; $("#pq").addEventListener("input", () => { clearTimeout(pqT); pqT = setTimeout(loadDeals, 250); });
+function renderKan() {
+  $("#kan").innerHTML = S.stages.map(st => {
+    const ds = S.deals.filter(d => (d.stage || "Lead") === st);
+    return `<div class="col" data-stage="${esc(st)}"><h4><span>${esc(st)}</span><span class="mut">${ds.length}</span></h4>${ds.map(d => `<div class="dc" draggable="true" data-id="${esc(d.id)}"><b>${esc(d.address || d.seller || d.phone || "Untitled")}</b>${d.seller && d.address ? `<div>${esc(d.seller)}</div>` : ""}<div class="m">${esc(d.phone || "")}${d.asking ? " · ask " + money(d.asking) : ""}${d.offer ? " · offer " + money(d.offer) : ""}</div>${d.callback ? `<div style="color:var(--warn);font-size:12px">Callback ${esc(new Date(d.callback).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</div>` : ""}<div class="dim" style="font-size:11px;margin-top:4px">${esc(d.rep || "")}</div></div>`).join("")}</div>`;
+  }).join("");
+}
+let dragId = null;
+$("#kan").addEventListener("dragstart", e => { const c = e.target.closest(".dc"); if (c) { dragId = c.dataset.id; e.dataTransfer.effectAllowed = "move"; } });
+$("#kan").addEventListener("dragover", e => { const col = e.target.closest(".col"); if (col && dragId) { e.preventDefault(); $$(".col").forEach(x => x.classList.toggle("over", x === col)); } });
+$("#kan").addEventListener("dragleave", e => { if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest(".col")) $$(".col").forEach(x => x.classList.remove("over")); });
+$("#kan").addEventListener("drop", async e => {
+  const col = e.target.closest(".col"); $$(".col").forEach(x => x.classList.remove("over"));
+  if (!col || !dragId) return; e.preventDefault();
+  const d = S.deals.find(x => x.id === dragId); const id = dragId; dragId = null;
+  if (!d || d.stage === col.dataset.stage) return;
+  d.stage = col.dataset.stage; renderKan();
+  try { await api("/deals/" + id, { method: "PATCH", body: { stage: d.stage } }); } catch (err) { toast(err.message); loadDeals(); }
+});
+$("#kan").addEventListener("click", e => { const c = e.target.closest(".dc"); if (c) openDeal(S.deals.find(d => d.id === c.dataset.id)); });
 
-/* ---------- team ---------- */
-async function loadTeam() {
-  try {
-    const r = await api("/stats?days=" + $("#t-days").value);
-    const sum = k => r.reps.reduce((n, x) => n + (x[k] || 0), 0);
-    $("#t-stats").innerHTML = [["Calls", sum("calls")], ["Talk time", fmtSecs(sum("talk"))], ["Interested", sum("interested")], ["Offers", sum("offers")], ["Contracts", sum("contracts")]].map(([a, b]) => `<div class="stat"><span>${a}</span><div class="big">${b}</div></div>`).join("");
-    $("#t-body").innerHTML = r.reps.map(x => `<tr><td><b>${esc(x.rep)}</b></td><td>${x.calls}</td><td>${fmtSecs(x.talk)}</td><td>${x.noans || 0}</td><td>${x.interested || 0}</td><td>${x.offers || 0}</td><td>${x.contracts || 0}</td></tr>`).join("") || `<tr><td colspan="7" class="empty">No calls in this window yet.</td></tr>`;
-  } catch (e) { toast(e.message); }
+let editing = null;
+function toLocalInput(iso) { if (!iso) return ""; const d = new Date(iso); if (isNaN(d)) return ""; const p = n => String(n).padStart(2, "0"); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; }
+function openDeal(d) {
+  editing = d || null; $("#d-err").textContent = "";
+  $("#dm-title").textContent = d ? "Edit deal" : "New deal";
+  $("#d-addr").value = d ? d.address || "" : ""; $("#d-seller").value = d ? d.seller || "" : ""; $("#d-phone").value = d ? d.phone || "" : "";
+  $("#d-stage").value = d ? d.stage || "Lead" : "Lead"; $("#d-cb").value = d ? toLocalInput(d.callback) : "";
+  $("#d-ask").value = d && d.asking != null ? d.asking : ""; $("#d-offer").value = d && d.offer != null ? d.offer : "";
+  $("#d-notes").value = d ? d.notes || "" : "";
+  $("#d-del").classList.toggle("hide", !d); $("#d-call").classList.toggle("hide", !d);
+  $("#dm").classList.remove("hide"); $("#d-addr").focus();
 }
-$("#t-days").onchange = loadTeam;
+$("#adddeal").onclick = () => openDeal(null);
+$("#dm-x").onclick = () => $("#dm").classList.add("hide");
+$("#dm").addEventListener("click", e => { if (e.target.id === "dm") $("#dm").classList.add("hide"); });
+function dealBody() { return { address: $("#d-addr").value, seller: $("#d-seller").value, phone: $("#d-phone").value, stage: $("#d-stage").value, callback: $("#d-cb").value ? new Date($("#d-cb").value).toISOString() : null, asking: $("#d-ask").value, offer: $("#d-offer").value, notes: $("#d-notes").value }; }
+$("#d-save").onclick = async () => {
+  try { await api(editing ? "/deals/" + editing.id : "/deals", { method: editing ? "PATCH" : "POST", body: dealBody() }); $("#dm").classList.add("hide"); loadDeals(); toast("Saved"); }
+  catch (e) { $("#d-err").textContent = e.message; }
+};
+$("#d-del").onclick = async () => {
+  if (!editing || !confirm("Delete this deal?")) return;
+  try { await api("/deals/" + editing.id, { method: "DELETE" }); $("#dm").classList.add("hide"); loadDeals(); } catch (e) { $("#d-err").textContent = e.message; }
+};
+$("#d-call").onclick = async () => {
+  if (!editing) return;
+  try { await api("/deals/" + editing.id, { method: "PATCH", body: dealBody() }); } catch {}
+  const ph = $("#d-phone").value; if (d10(ph).length !== 10) return $("#d-err").textContent = "Add a 10-digit phone number first.";
+  $("#dm").classList.add("hide"); show("dial"); clearLog();
+  S.dealId = editing.id; S.dealLabel = editing.address || editing.seller || pretty(ph);
+  $("#linked").innerHTML = `Logging to deal: <b>${esc(S.dealLabel)}</b>`; $("#linked").classList.remove("hide"); $("#addwrap").classList.add("hide");
+  $("#num").value = formatNum(ph); $("#num").focus();
+};
 
-/* ---------- owner: import / DNC / add ---------- */
-function parseCSV(text) {
-  const rows = []; let row = [], f = "", q = false;
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
-    else if (c === '"') q = true;
-    else if (c === ",") { row.push(f); f = ""; }
-    else if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; }
-    else if (c !== "\r") f += c;
-  }
-  if (f || row.length) { row.push(f); rows.push(row); }
-  const head = (rows.shift() || []).map(h => h.trim().toLowerCase());
-  return rows.filter(r => r.some(x => x.trim())).map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] || "").trim()])));
-}
-let importRows = [];
-$("#i-file").onchange = async e => {
-  const f = e.target.files[0]; if (!f) return;
-  const rows = parseCSV(await f.text());
-  importRows = rows.map(r => ({
-    address: r["address"] || "", csz: r["city, state, zip"] || [r["city"], [r["state"], r["zip"]].filter(Boolean).join(" ")].filter(Boolean).join(", "),
-    sqft: r["square feet"] || r["sqft"] || "", beds_baths: r["beds / baths"] || "", phones: r["phone numbers"] || ""
-  })).filter(r => r.address);
-  const withPh = importRows.filter(r => r.phones).length;
-  $("#i-info").textContent = `${importRows.length} leads found · ${withPh} have phone numbers · ${importRows.length - withPh} have none (they'll import but can't be dialed).`;
-  $("#i-go").disabled = !importRows.length;
-};
-$("#i-go").onclick = async () => {
-  const market = $("#i-market").value; let added = 0, dup = 0, skip = 0;
-  $("#i-go").disabled = true; const pr = $("#i-prog"); pr.classList.remove("hide"); pr.max = importRows.length; pr.value = 0;
+/* ---------- settings ---------- */
+function openSettings() { $("#s-mode").value = S.mode; $("#s-cell").value = S.cell ? pretty(S.cell) : ""; $("#s-err").textContent = ""; $("#sm").classList.remove("hide"); }
+$("#setbtn").onclick = openSettings;
+$("#sm-x").onclick = () => $("#sm").classList.add("hide");
+$("#s-save").onclick = async () => {
+  const mode = $("#s-mode").value, cell = $("#s-cell").value.trim();
+  if (mode === "ring" && d10(cell).length !== 10) return $("#s-err").textContent = "Enter your 10-digit cell for Ring-my-phone mode.";
   try {
-    for (let i = 0; i < importRows.length; i += 100) {
-      const r = await api("/leads/import", { method: "POST", body: { market, leads: importRows.slice(i, i + 100) } });
-      added += r.added; dup += r.duplicates; skip += r.skipped; pr.value = Math.min(i + 100, importRows.length);
-    }
-    $("#i-info").textContent = `Done. ${added} added, ${dup} duplicates skipped${skip ? ", " + skip + " invalid" : ""}.`;
-    refreshMine();
-  } catch (e) { $("#i-info").textContent = "Import stopped: " + e.message; $("#i-go").disabled = false; }
+    if (cell || S.cell) { const r = await api("/me/phone", { method: "POST", body: { phone: cell } }); S.cell = r.phone; }
+    S.mode = mode; ls("jig_mode", mode); $("#sm").classList.add("hide"); toast("Saved");
+  } catch (e) { $("#s-err").textContent = e.message; }
 };
-$("#n-go").onclick = async () => {
-  try { const r = await api("/dnc", { method: "POST", body: { numbers: $("#n-nums").value } }); $("#n-info").textContent = `${r.numbers} numbers checked against ${r.checked} leads. ${r.marked} marked DNC.`; }
-  catch (e) { $("#n-info").textContent = e.message; }
-};
-$("#a-go").onclick = async () => {
-  try { await api("/leads/add", { method: "POST", body: { address: $("#a-addr").value, csz: $("#a-csz").value, sqft: $("#a-sqft").value, beds_baths: $("#a-bb").value, phones: $("#a-ph").value, market: $("#a-market").value } }); $("#a-info").textContent = "Added."; ["a-addr","a-csz","a-sqft","a-bb","a-ph"].forEach(i => $("#" + i).value = ""); refreshMine(); }
-  catch (e) { $("#a-info").textContent = e.message; }
-};
+window.addEventListener("beforeunload", e => { if (S.call || S.ring) { e.preventDefault(); e.returnValue = ""; } });
 </script>
 </body>
 </html>
